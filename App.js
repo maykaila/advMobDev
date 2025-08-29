@@ -7,7 +7,7 @@
 // That is all for now. Peace out!
 
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, FlatList, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
 import Task from './components/task';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts, DotGothic16_400Regular } from '@expo-google-fonts/dotgothic16';
@@ -74,15 +74,17 @@ export default function App() {
 
       {/* Tasks time!! */}
       <View style={styles.taskBox}>
-        {
-          taskItems.map((item, index) =>{
-            return(
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item}/>
-              </TouchableOpacity>
-            )
-          })
-        }
+        <FlatList
+          data={taskItems}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity onPress={() => completeTask(index)}>
+              <Task text={item} />
+            </TouchableOpacity>
+          )}
+          contentContainerStyle={{ paddingBottom: 120 }} // so input isn't covered
+          showsVerticalScrollIndicator={false}
+        />
       </View>
 
       {/* FIXED: needs to be fixed bc it pushes up EVERYTHINGGG */}
@@ -123,6 +125,7 @@ const styles = StyleSheet.create({
   },
   taskBox: {
     marginTop: 30,
+    maxHeight: '70%',
   },
   writeTaskWrapper: {
     position: 'absolute',
