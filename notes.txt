@@ -1,0 +1,15 @@
+To be improved (if u wanna continue this project):
+1. Functions would be in a different file
+2. Styles in a separate file
+3. Add an update/edit function
+   3.1. make the buttons functional (eg. the useless blue square)
+4. Design should be slayable bc design/aesthetic >>>>>>>>>>> functionality
+That is all for now. Peace out!
+
+==============================================================================================
+WHAT DID SHE DO TODAY??
+
+[Aug. 29, 2024]
+    - Added a checkbox + styled it
+    - Fixed the tasks going away after app gets closed
+    - Added nerdCat
