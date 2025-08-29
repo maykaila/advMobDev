@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Checkbox from 'expo-checkbox';
 
 const Task = (props) => {
+    const [isChecked, setChecked] = useState(false);
+
     return(
-        <View style={styles.item}>
+        <View style={[styles.item, isChecked && styles.itemChecked]}>
             <View style={styles.actualTask}>
-                <View style={styles.checkbox}></View>
-                <Text style={styles.text}>{props.text}</Text>
+                <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked}
+                    onValueChange={setChecked}
+                    color={isChecked ? '#298CDE' : undefined}
+                />
+                <Text style={[styles.text, isChecked && styles.textChecked]}>
+                  {props.text}
+                </Text>
             </View>
             {/* <View style={styles.uselessThing}></View> */}
         </View>
@@ -36,7 +46,7 @@ const styles = StyleSheet.create({
     checkbox: {
         width: 24,
         height: 24,
-        backgroundColor: '#298CDE',
+        borderColor: '#298CDE',
         borderRadius: 1,
         marginRight: 15,
     },

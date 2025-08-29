@@ -1,13 +1,5 @@
-// To be improved (if u wanna continue this project):
-// 1. Functions would be in a different file
-// 2. Styles in a separate file
-// 3. Add an update/edit function
-//    3.1. make the buttons functional (eg. the useless blue square)
-// 4. Design should be slayable bc design/aesthetic >>>>>>>>>>> functionality
-// That is all for now. Peace out!
-
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, FlatList, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, FlatList, Text, TextInput, TouchableOpacity, View, Keyboard, Image } from 'react-native';
 import Task from './components/task';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts, DotGothic16_400Regular } from '@expo-google-fonts/dotgothic16';
@@ -60,6 +52,13 @@ export default function App() {
     setTaskItems(itemsCopy);
   }
 
+  //DO NOT REMOVE !!!
+  useEffect(() => {
+  if (loaded || error) {
+    SplashScreen.hideAsync();
+  }
+}, [loaded, error]);
+
   //reason for almost crashing out
   if (!loaded && !error) {
     return null;
@@ -69,6 +68,7 @@ export default function App() {
     <View style={styles.container}>
       {/* Just Header */}
       <View style={styles.taskWrapper}>
+        <Image source={require('./assets/nerdCat.png')} style={styles.nerd}/>
         <Text style={styles.header}>Your Tasks</Text>
       </View>
 
@@ -115,16 +115,23 @@ const styles = StyleSheet.create({
   taskWrapper: {
     paddingTop: 80,
     paddingHorizontal: 20, 
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  nerd: {
+    height: 30,
+    width: 30,
+    
   },
   header: {
     fontSize: 25,
     fontFamily: 'DotGothic16_400Regular',
     lineHeight: 30,
     color: '#F3D639',
-    
+    paddingLeft: 10,
   },
   taskBox: {
-    marginTop: 30,
+    marginTop: 20,
     maxHeight: '70%',
   },
   writeTaskWrapper: {
