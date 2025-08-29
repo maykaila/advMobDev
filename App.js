@@ -11,29 +11,47 @@ import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableO
 import Task from './components/task';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts, DotGothic16_400Regular } from '@expo-google-fonts/dotgothic16';
+import * as SecureStore from 'expo-secure-store';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  //should be like async
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+  }
+
+  async function load(key) {
+    let result = await SecureStore.getItemAsync(key);
+    return result ? result : null;
+  }
+
   //load google font
   const [loaded, error] = useFonts({
     DotGothic16_400Regular,
   });
 
   useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
+    (async () => {
+      const saved = await load("tasks");
+      if (saved) {
+        setTaskItems(JSON.parse(saved));
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    save("tasks", JSON.stringify(taskItems));
+  }, [taskItems]);
 
   // Creating Task here !!
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
-
   const handleAddTask = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
-    setTask(null);
+    setTask("");
   } 
 
   const completeTask = (index) => {
