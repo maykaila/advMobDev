@@ -9,7 +9,18 @@ That is all for now. Peace out!
 ==============================================================================================
 WHAT DID SHE DO TODAY??
 
-[Aug. 29, 2024]
+[Aug. 29, 2025]
     - Added a checkbox + styled it
     - Fixed the tasks going away after app gets closed
     - Added nerdCat
+[Sept. 5, 2025]
+    - Added a login page
+    - Added a navigation bar
+   Needs Fixing:
+      - Proper login, logout
+      - Add signup page
+      - Fix "stack"
+   Plans:
+      - Fix navigation drawer (more aesthetic)
+      - Profile page
+      - Other pages
