@@ -19,18 +19,18 @@ export default function ProfilePage({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212",
+    backgroundColor: "#0B0C07",
     justifyContent: "center",
     alignItems: "center",
   },
   title: {
     fontSize: 28,
-    color: "#1DB954",
+    color: "#35DE4E",
     fontWeight: "bold",
     marginBottom: 10,
   },
   text: {
     fontSize: 16,
-    color: "#fff",
+    color: "#35DE4E",
   },
 });

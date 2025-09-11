@@ -25,8 +25,8 @@ const Task = (props) => {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#D6D6D6',
-        borderColor: '#565A66',
+        backgroundColor: '#0B0C07',
+        borderColor: '#35DE4E',
         borderWidth: 1,
         marginLeft: 15,
         marginRight: 15,
@@ -46,13 +46,14 @@ const styles = StyleSheet.create({
     checkbox: {
         width: 24,
         height: 24,
-        borderColor: '#298CDE',
+        borderColor: '#35DE4E',
         borderRadius: 1,
         marginRight: 15,
     },
     text: {
         maxWidth: '80%',
         lineHeight: 24,
+        color: '#35DE4E',
         fontFamily:'DotGothic16_400Regular',
     },
     // uselessThing: {

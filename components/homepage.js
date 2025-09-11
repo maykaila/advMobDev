@@ -62,11 +62,13 @@ export default function Homepage({navigation}) {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.taskWrapper}>
-        <Image source={require('../assets/nerdCat.png')} style={styles.nerd} />
-        <Text style={styles.header}>Your Tasks</Text>
-        <TouchableOpacity style={styles.settingView} onPress={() => navigation.openDrawer()} >
-          <Image source={require('../assets/logoutButton.png')} style={styles.settings} />
+    
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Image source={require('../assets/nerdCat.png')} style={styles.nerd} />
         </TouchableOpacity>
+    
+        <Text style={styles.header}>Your Tasks</Text>
+    
       </View>
 
       {/* Task List */}
@@ -108,7 +110,7 @@ export default function Homepage({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#6F737F',
+    backgroundColor: '#0B0C07',
   },
   taskWrapper: {
     paddingTop: 80,
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: 'DotGothic16_400Regular',
     lineHeight: 30,
-    color: '#F3D639',
+    color: '#35DE4E',
     paddingLeft: 10,
   },
   settingView: {
@@ -151,9 +153,9 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#D0D0D0',
+    backgroundColor: '#35DE4E',
     borderRadius: 1,
-    borderColor: '#565A66',
+    borderColor: '#0B0C07',
     borderWidth: 1,
     width: 250,
     fontFamily: 'DotGothic16_400Regular',
@@ -161,8 +163,8 @@ const styles = StyleSheet.create({
   addWrapper: {
     width: 45,
     height: 45,
-    backgroundColor: '#D0D0D0',
-    borderColor: '#565A66',
+    backgroundColor: '#35DE4E',
+    borderColor: '#0B0C07',
     borderRadius: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -171,6 +173,7 @@ const styles = StyleSheet.create({
   addText: {
     fontSize: 20,
     fontFamily: 'DotGothic16_400Regular',
-    color: '#333',
+    lineHeight: 30,
+    color: '#0B0C07',
   },
 });
