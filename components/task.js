@@ -12,13 +12,13 @@ const Task = (props) => {
                     style={styles.checkbox}
                     value={isChecked}
                     onValueChange={setChecked}
-                    color={isChecked ? '#298CDE' : undefined}
+                    color={isChecked ? '#35DE4E' : undefined}
                 />
                 <Text style={[styles.text, isChecked && styles.textChecked]}>
                   {props.text}
                 </Text>
             </View>
-            {/* <View style={styles.uselessThing}></View> */}
+            <View style={styles.uselessThing}></View>
         </View>
     )
 }
@@ -51,18 +51,18 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     text: {
-        maxWidth: '80%',
+        flexShrink: 1, // lets text shrink instead of disappearing
         lineHeight: 24,
         color: '#35DE4E',
-        fontFamily:'DotGothic16_400Regular',
+        fontFamily: 'DotGothic16_400Regular',
     },
-    // uselessThing: {
-    //     width: 12,
-    //     height: 12,
-    //     borderColor: '#EF5A5A',
-    //     borderWidth: 2,
-    //     borderRadius: 2,
-    // },
+    uselessThing: {
+        width: 12,
+        height: 12,
+        borderColor: '#EF5A5A',
+        borderWidth: 2,
+        borderRadius: 2,
+    },
 });
 
 export default Task;

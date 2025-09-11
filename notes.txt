@@ -21,6 +21,16 @@ WHAT DID SHE DO TODAY??
       - Add signup page
       - Fix "stack"
    Plans:
-      - Fix navigation drawer (more aesthetic)
-      - Profile page
+      / Fix navigation drawer (more aesthetic)
+      / Profile page
       - Other pages
+[Sept. 11, 2025]
+    - Aesthetics
+      > Profile
+      > Navigation drawer
+      > Checkbox
+    - Don't know what i meant by "Fix stack"
+   To Add:
+      - Signup
+      - Forgot password
+      - The stats in profile

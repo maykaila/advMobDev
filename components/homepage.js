@@ -62,13 +62,11 @@ export default function Homepage({navigation}) {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.taskWrapper}>
-    
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Image source={require('../assets/nerdCat.png')} style={styles.nerd} />
-        </TouchableOpacity>
-    
+        <Image source={require('../assets/nerdCat.png')} style={styles.nerd} />
         <Text style={styles.header}>Your Tasks</Text>
-    
+        <TouchableOpacity style={styles.settingView} onPress={() => navigation.openDrawer()} >
+          <Image source={require('../assets/logoutButton.png')} style={styles.settings} />
+        </TouchableOpacity>
       </View>
 
       {/* Task List */}
