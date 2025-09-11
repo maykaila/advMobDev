@@ -13,7 +13,7 @@ const Drawer = createDrawerNavigator();
 function HomeWithDrawer() {
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false, drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel,}}
+      screenOptions={{ headerShown: false, drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel, drawerActiveBackgroundColor: drawerColors.activeTint, drawerActiveTintColor: drawerColors.activeText, drawerInactiveTintColor: drawerColors.inactiveText,}}
       initialRouteName="Dashboard"
     >
       <Drawer.Screen name="Dashboard" component={TaskPage} />
@@ -42,7 +42,7 @@ const drawerStyles = StyleSheet.create({
   drawerLabel: {
     fontSize: 15,
     fontFamily: 'DotGothic16_400Regular',
-    color: "#35DE4E",
+    // color: "#35DE4E",
     lineHeight: 25,
   },
   logout: {
@@ -52,3 +52,9 @@ const drawerStyles = StyleSheet.create({
     lineHeight: 25,
   },
 });
+
+const drawerColors = {
+  activeTint: "#35DE4E",
+  activeText: "#0B0C07",
+  inactiveText: "#35DE4E",
+};

@@ -6,12 +6,13 @@ export default function ProfilePage({navigation}) {
   return (
     <View style={styles.container}>
       {/* Drawer Button (logout/settings) */}
-      <TouchableOpacity
-        style={styles.settingView}
-        onPress={() => navigation.openDrawer()}
-      >
-        <Text style={styles.title}>(°口°)</Text>
-      </TouchableOpacity>
+      <View style={styles.settingView}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Text style={styles.backButton}>{"<"}</Text>
+        </TouchableOpacity>
+        
+        <Text style={styles.title}>Profile</Text>
+      </View>
 
       {/* Profile Picture */}
       <View style={styles.avatarWrapper}>
@@ -59,15 +60,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#0B0C07", // dark background
     padding: 20,
   },
-  title: {
+  backButton: {
     color: "#0B0C07",
-    fontSize: 25,
+    fontSize: 20,
     fontFamily: 'DotGothic16_400Regular',
     lineHeight: 30,
     marginBottom: 10,
   },
+  title: {
+    color: "#0B0C07",
+    fontSize: 20,
+    fontFamily: 'DotGothic16_400Regular',
+    lineHeight: 30,
+    marginLeft: 10,
+  },
   settingView: {
-    marginTop: 25,
+    marginTop: 50,
     paddingTop: 5,
     paddingHorizontal: 10,
     flexDirection: 'row',
@@ -76,8 +84,8 @@ const styles = StyleSheet.create({
   },
   avatarWrapper: {
     alignItems: "center",
-    marginTop: 40,
-    marginBottom: 25,
+    marginTop: 30,
+    marginBottom: 15,
     padding: 10,
     // backgroundColor: 'pink',
   },
