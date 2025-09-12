@@ -10,6 +10,7 @@
   <img src="./assets/screenshots/profile.jpeg" width="200"/>
   <img src="./assets/screenshots/drawerNav.jpeg" width="200"/>
 </p>
+
 ## Week 3 [September 12]
 #### Assignment:
 * Implement gestures
