@@ -2,7 +2,9 @@
 
 ## Week 2 [September 5]
 
-![Screenshot 1](./assets/screenshots/login.jpeg)  
-![Screenshot 2](./assets/screenshots/homepage.jpeg)  
-![Screenshot 3](./assets/screenshots/profile.jpeg)
-![Screenshot 3](./assets/screenshots/drawerNav.jpeg)
+<p align="center">
+  <img src="./assets/screenshots/login.jpeg" width="200"/>
+  <img src="./assets/screenshots/homepage.jpeg" width="200"/>
+  <img src="./assets/screenshots/profile.jpeg" width="200"/>
+  <img src="./assets/screenshots/drawerNav.jpeg" width="200"/>
+</p>
