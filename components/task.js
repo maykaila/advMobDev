@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     uselessThing: {
         width: 12,
         height: 12,
-        borderColor: '#EF5A5A',
+        borderColor: '#FF5AB8',
         borderWidth: 2,
         borderRadius: 2,
     },

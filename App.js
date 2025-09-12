@@ -1,4 +1,5 @@
 import React from "react";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -13,7 +14,7 @@ const Drawer = createDrawerNavigator();
 function HomeWithDrawer() {
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false, drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel, drawerActiveBackgroundColor: drawerColors.activeTint, drawerActiveTintColor: drawerColors.activeText, drawerInactiveTintColor: drawerColors.inactiveText,}}
+      screenOptions={{ headerShown: false, swipeEnabled: true,  gestureEnabled: true, drawerType: "front", swipeEdgeWidth: 100, drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel, drawerActiveBackgroundColor: drawerColors.activeTint, drawerActiveTintColor: drawerColors.activeText, drawerInactiveTintColor: drawerColors.inactiveText,}}
       initialRouteName="Dashboard"
     >
       <Drawer.Screen name="Dashboard" component={TaskPage} />
@@ -25,12 +26,14 @@ function HomeWithDrawer() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="Home" component={HomeWithDrawer} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={LoginPage} />
+          <Stack.Screen name="Home" component={HomeWithDrawer} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 
