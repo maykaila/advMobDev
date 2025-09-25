@@ -34,3 +34,9 @@ WHAT DID SHE DO TODAY??
       - Signup
       - Forgot password
       - The stats in profile
+[Sept. 25, 2025]
+   - i dont know what this to do list should look like anymore man...
+   Added:
+      - folder page
+         > needs fixing bc it should categorized the tasks...
+      - the animations
