@@ -1,23 +1,25 @@
 // components/profile.js
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
-export default function ProfilePage({navigation}) {
+export default function ProfilePage() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      {/* Drawer Button (logout/settings) */}
+      {/* Drawer Button (back) */}
       <View style={styles.settingView}>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Text style={styles.backButton}>{"<"}</Text>
         </TouchableOpacity>
-        
         <Text style={styles.title}>Profile</Text>
       </View>
 
       {/* Profile Picture */}
       <View style={styles.avatarWrapper}>
         <Image
-          source={require('../assets/profilePlaceholder.jpg')} // placeholder
+          source={require('../assets/profilePlaceholder.jpg')}
           style={styles.avatar}
         />
       </View>
@@ -57,7 +59,7 @@ export default function ProfilePage({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0B0C07", // dark background
+    backgroundColor: "#0B0C07",
     padding: 20,
   },
   backButton: {
@@ -87,7 +89,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 15,
     padding: 10,
-    // backgroundColor: 'pink',
   },
   avatar: {
     width: 200,

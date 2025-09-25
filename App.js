@@ -1,25 +1,41 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, useDrawerProgress } from "@react-navigation/drawer";
 import { StyleSheet } from "react-native";
-import LoginPage from "./components/loginPage.js";
-import TaskPage from "./components/homepage.js";
-import ProfilePage from "./components/profile.js";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import LoginPage from "./components/loginPage";
+import TaskPage from "./components/homepage";
+import ProfilePage from "./components/profile";
+import SettingsPage from "./components/settings";
 
-const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator(), Drawer = createDrawerNavigator();
+
+function AnimatedScreen({ children }) {
+  const progress = useDrawerProgress() ?? { value: 0 };
+  const animatedStyle = useAnimatedStyle(() => {
+    const p = progress.value ?? 0;
+    return { transform: [{ scale: 1 - p * 0.08 }], 
+             borderRadius: p * 18, 
+             opacity: 1 - p * 0.06, 
+             overflow: "hidden" };
+  });
+  return <Animated.View style={[{ flex: 1 }, animatedStyle]}>{children}</Animated.View>;
+}
 
 function HomeWithDrawer() {
   return (
-    <Drawer.Navigator
-      screenOptions={{ headerShown: false, swipeEnabled: true,  gestureEnabled: true, drawerType: "front", swipeEdgeWidth: 100, drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel, drawerActiveBackgroundColor: drawerColors.activeTint, drawerActiveTintColor: drawerColors.activeText, drawerInactiveTintColor: drawerColors.inactiveText,}}
-      initialRouteName="Dashboard"
-    >
-      <Drawer.Screen name="Dashboard" component={TaskPage} />
-      <Drawer.Screen name="Profile" component={ProfilePage} /> 
-      <Drawer.Screen name="Logout" component={LoginPage} options={{drawerLabelStyle: drawerStyles.logout}}/>
+    <Drawer.Navigator screenOptions={{
+      headerShown: false, swipeEnabled: true, gestureEnabled: true, drawerType: "front", swipeEdgeWidth: 100,
+      drawerStyle: drawerStyles.drawer, drawerLabelStyle: drawerStyles.drawerLabel,
+      drawerActiveBackgroundColor: drawerColors.activeTint, drawerActiveTintColor: drawerColors.activeText, drawerInactiveTintColor: drawerColors.inactiveText,sceneContainerStyle: { backgroundColor: "hot pink" }, 
+    }} initialRouteName="Dashboard">
+      <Drawer.Screen name="Dashboard" children={() => <AnimatedScreen><TaskPage /></AnimatedScreen>} />
+      <Drawer.Screen name="Profile" options={{ animation: "slide_from_right", animationDuration: 300 }} children={() => <AnimatedScreen><ProfilePage /></AnimatedScreen>} />
+      <Drawer.Screen name="Settings" options={{ animation: "slide_from_right", animationDuration: 300 }} children={() => <AnimatedScreen><SettingsPage /></AnimatedScreen>} />
+      <Drawer.Screen name="Logout" options={{ drawerLabelStyle: drawerStyles.logout }} children={() => <AnimatedScreen><LoginPage /></AnimatedScreen>} />
     </Drawer.Navigator>
   );
 }
@@ -27,9 +43,17 @@ function HomeWithDrawer() {
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
+      <NavigationContainer
+        onStateChange={(state) => {
+          try { localStorage.setItem("lastRoute", state.routes[state.index].name); } catch {}
+        }}
+        initialState={(() => {
+          try { const lastRoute = localStorage.getItem("lastRoute"); if (lastRoute) return { routes: [{ name: lastRoute }] }; } catch {}
+          return { routes: [{ name: "Login" }] };
+        })()}
+      >
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={LoginPage} />
+          <Stack.Screen name="Login" component={LoginPage} options={{ animation: "fade", animationDuration: 200 }} />
           <Stack.Screen name="Home" component={HomeWithDrawer} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -40,17 +64,16 @@ export default function App() {
 const drawerStyles = StyleSheet.create({
   drawer: {
     backgroundColor: "#0B0C07",
-    width: '60%',
+    width: "60%",
   },
   drawerLabel: {
     fontSize: 15,
-    fontFamily: 'DotGothic16_400Regular',
-    // color: "#35DE4E",
+    fontFamily: "DotGothic16_400Regular",
     lineHeight: 25,
   },
   logout: {
     fontSize: 15,
-    fontFamily: 'DotGothic16_400Regular',
+    fontFamily: "DotGothic16_400Regular",
     color: "#FF5AB8",
     lineHeight: 25,
   },

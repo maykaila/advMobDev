@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, FlatList, Text, TextInput, TouchableOpacity, View, Keyboard, Image } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Keyboard,
+  Image
+} from 'react-native';
 import Task from './task';
 import { useFonts, DotGothic16_400Regular } from '@expo-google-fonts/dotgothic16';
 import * as SecureStore from 'expo-secure-store';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Homepage({navigation}) {
+export default function Homepage() {
+  const navigation = useNavigation(); // <- use hook so openDrawer works
   const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
 
@@ -125,15 +138,6 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     color: '#35DE4E',
     paddingLeft: 10,
-  },
-  settingView: {
-    width: '60%',
-    alignItems: 'flex-end',
-    paddingRight: 15,
-  },
-  settings: {
-    height: 30,
-    width: 30,
   },
   taskBox: {
     marginTop: 20,
