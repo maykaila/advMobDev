@@ -47,3 +47,31 @@
 
 #### Reflection:
   I should've done this after my exam... #regrettingLifeDecisions #mababangScoreAtMababangResistensya #gotTooBusyCoping
+
+## Actual Week 4 [September 30]
+#### Assignment 1:
+* Build a Playlist Interface
+  * Add Animations
+  * Implement Undo/Redo
+  * Add State Persistence
+
+#### Assignment 1:
+* Spotify Profile Creation Form
+  * Build Profile Form with Enhanced Validation
+  * Add Animations
+  * Implement Form Caching
+  * Build Dynamic Profile Preview
+
+#### Assignment 1 Documentation:
+Here is the playlist... Makes me want to end it all ngl bro. I have nothing to say, but yk it made me realized that I don't like doing things when its not the vibes im going for. 
+<p align="center">
+  <img src="./assets/screenshots/playlistPage.jpg" width="200"/>
+  <img src="./assets/screenshots/actualPlaylist.jpg" width="200"/>
+</p>
+
+#### Assignment 2 Documentation:
+NGL.... I have nothing in my brain rn, will update when I can.
+<p align="center">
+  <img src="./assets/screenshots/updatedProfile.jpg" width="200"/>
+  <img src="./assets/screenshots/editProfile.jpg" width="200"/>
+</p>

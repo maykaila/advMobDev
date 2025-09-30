@@ -11,7 +11,10 @@ import LoginPage from "./components/loginPage";
 import TaskPage from "./components/homepage";
 import ProfilePage from "./components/profile";
 import SettingsPage from "./components/settings";
-import TaskFolders from "./components/taskFolders";
+import TaskFolders from "./components/playlist";
+import PlaylistDetail from "./components/playlistDets";
+import EditProfilePage from "./components/profileEdit";
+
 
 const Stack = createNativeStackNavigator(), Drawer = createDrawerNavigator();
 
@@ -56,7 +59,7 @@ function HomeWithDrawer() {
         )}
       />
       <Drawer.Screen
-        name="Tasks"
+        name="Playlist"
         children={() => (
           <AnimatedScreen>
             <TaskFolders />
@@ -119,6 +122,8 @@ export default function App() {
             options={{ animation: "fade", animationDuration: 200 }}
           />
           <Stack.Screen name="Home" component={HomeWithDrawer} />
+          <Stack.Screen name="PlaylistDetail" component={PlaylistDetail} />
+          <Stack.Screen name="EditProfilePage" component={EditProfilePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

@@ -1,180 +1,114 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  FlatList,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
-  Keyboard,
-  Image
-} from 'react-native';
-import Task from './task';
-import { useFonts, DotGothic16_400Regular } from '@expo-google-fonts/dotgothic16';
-import * as SecureStore from 'expo-secure-store';
-import { useNavigation } from '@react-navigation/native';
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Homepage() {
-  const navigation = useNavigation(); // <- use hook so openDrawer works
-  const [task, setTask] = useState('');
-  const [taskItems, setTaskItems] = useState([]);
+  const navigation = useNavigation();
+  const [greeting, setGreeting] = useState("Good Evening");
 
-  // SecureStore helpers
-  const save = async (key, value) => {
-    await SecureStore.setItemAsync(key, value);
-  };
-
-  const load = async (key) => {
-    const result = await SecureStore.getItemAsync(key);
-    return result ?? null;
-  };
-
-  // Load fonts
-  const [loaded, error] = useFonts({
-    DotGothic16_400Regular,
-  });
-
-  // Load saved tasks on mount
   useEffect(() => {
-    (async () => {
-      const saved = await load('tasks');
-      if (saved) {
-        setTaskItems(JSON.parse(saved));
-      }
-    })();
+    const hour = new Date().getHours();
+    if (hour < 12) setGreeting("Good Morning");
+    else if (hour < 18) setGreeting("Good Afternoon");
+    else setGreeting("Good Evening");
   }, []);
 
-  // Save tasks when updated
-  useEffect(() => {
-    save('tasks', JSON.stringify(taskItems));
-  }, [taskItems]);
+  const dummyPlaylists = [
+    { id: "1", name: "Chill Mode", cover: require("../assets/nerdCat.png") },
+    { id: "2", name: "Focus Beats", cover: require("../assets/nerdCat.png") },
+    { id: "3", name: "Workout Pump", cover: require("../assets/nerdCat.png") },
+    { id: "4", name: "Sleep Tight", cover: require("../assets/nerdCat.png") },
+  ];
 
-  // Add new task
-  const handleAddTask = () => {
-    if (!task.trim()) return; // ignore empty tasks
-    Keyboard.dismiss();
-    setTaskItems([...taskItems, task]);
-    setTask('');
-  };
-
-  // Complete / delete task
-  const completeTask = (index) => {
-    const updatedTasks = [...taskItems];
-    updatedTasks.splice(index, 1);
-    setTaskItems(updatedTasks);
-  };
-
-  // Prevent rendering until fonts are ready
-  if (!loaded && !error) {
-    return null;
-  }
+  const renderCard = ({ item }) => (
+    <TouchableOpacity style={styles.card}>
+      <Image source={item.cover} style={styles.cardImg} />
+      <Text style={styles.cardText}>{item.name}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.taskWrapper}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()} >
-          <Image source={require('../assets/nerdCat.png')} style={styles.nerd} />
-        </TouchableOpacity>
-        <Text style={styles.header}>Your Tasks</Text>
+      <View style={styles.headerRow}>
+        <Ionicons
+          name="menu"
+          size={26}
+          color="#35DE4E"
+          onPress={() => navigation.openDrawer()}
+        />
+        <Text style={styles.headerTitle}>{greeting}</Text>
       </View>
 
-      {/* Task List */}
-      <View style={styles.taskBox}>
-        <FlatList
-          data={taskItems}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity onPress={() => completeTask(index)}>
-              <Task text={item} />
-            </TouchableOpacity>
-          )}
-          contentContainerStyle={{ paddingBottom: 120 }}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      {/* Recently Played */}
+      <Text style={styles.sectionTitle}>Recently Played</Text>
+      <FlatList
+        data={dummyPlaylists}
+        renderItem={renderCard}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginVertical: 10 }}
+      />
 
-      {/* Input */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.writeTaskWrapper}
-      >
-        <TextInput
-          style={styles.input}
-          placeholder="What to do today?"
-          value={task}
-          onChangeText={setTask}
-        />
-        <TouchableOpacity onPress={handleAddTask}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+      {/* Made for You */}
+      <Text style={styles.sectionTitle}>Made for You</Text>
+      <FlatList
+        data={dummyPlaylists}
+        renderItem={renderCard}
+        keyExtractor={(item) => item.id + "m"}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginVertical: 10 }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0B0C07',
+  container: { flex: 1, backgroundColor: "#0B0C07", paddingTop: 60, paddingHorizontal: 20 },
+  headerRow: { flexDirection: "row", alignItems: "center", marginBottom: 20 },
+  headerTitle: {
+    color: "#35DE4E",
+    fontSize: 22,
+    fontFamily: "DotGothic16_400Regular",
+    marginLeft: 12,
   },
-  taskWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+  sectionTitle: {
+    color: "#35DE4E",
+    fontSize: 18,
+    marginTop: 12,
+    marginBottom: 6,
+    fontFamily: "DotGothic16_400Regular",
   },
-  nerd: {
-    height: 30,
-    width: 30,
+  card: {
+    marginRight: 14,
+    width: 120,
+    maxHeight: 120,
+    backgroundColor: "#070806",
+    borderRadius: 6,
+    padding: 10,
+    alignItems: "center",
   },
-  header: {
-    fontSize: 25,
-    fontFamily: 'DotGothic16_400Regular',
-    lineHeight: 30,
-    color: '#35DE4E',
-    paddingLeft: 10,
-  },
-  taskBox: {
-    marginTop: 20,
-    maxHeight: '70%',
-  },
-  writeTaskWrapper: {
-    position: 'absolute',
-    bottom: 60,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  input: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    backgroundColor: '#35DE4E',
-    borderRadius: 1,
-    borderColor: '#0B0C07',
+  cardImg: {
+    width: 100,
+    height: 100,
+    borderRadius: 6,
+    marginBottom: 8,
     borderWidth: 1,
-    width: 250,
-    fontFamily: 'DotGothic16_400Regular',
+    borderColor: "#35DE4E",
   },
-  addWrapper: {
-    width: 45,
-    height: 45,
-    backgroundColor: '#35DE4E',
-    borderColor: '#0B0C07',
-    borderRadius: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-  },
-  addText: {
-    fontSize: 20,
-    fontFamily: 'DotGothic16_400Regular',
-    lineHeight: 30,
-    color: '#0B0C07',
+  cardText: {
+    color: "#35DE4E",
+    fontSize: 13,
+    textAlign: "center",
   },
 });
