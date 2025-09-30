@@ -55,7 +55,7 @@
   * Implement Undo/Redo
   * Add State Persistence
 
-#### Assignment 1:
+#### Assignment 2:
 * Spotify Profile Creation Form
   * Build Profile Form with Enhanced Validation
   * Add Animations
