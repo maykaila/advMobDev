@@ -9,9 +9,19 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { themePalettes } from "../themeConfig"; // 👈 import centralized theme
 
 export default function Homepage() {
   const navigation = useNavigation();
+
+  // 👇 Redux theme state
+  const themeMode = useSelector((state) => state.theme.mode);
+  const accentColor = useSelector((state) => state.theme.accentColor);
+
+  // 👇 Get colors from centralized theme
+  const colors = themePalettes(accentColor)[themeMode] || themePalettes(accentColor).light;
+
   const [greeting, setGreeting] = useState("Good Evening");
 
   useEffect(() => {
@@ -29,27 +39,34 @@ export default function Homepage() {
   ];
 
   const renderCard = ({ item }) => (
-    <TouchableOpacity style={styles.card}>
-      <Image source={item.cover} style={styles.cardImg} />
-      <Text style={styles.cardText}>{item.name}</Text>
+    <TouchableOpacity style={[styles.card, { backgroundColor: colors.card }]}>
+      <Image
+        source={item.cover}
+        style={[styles.cardImg, { borderColor: colors.primary }]}
+      />
+      <Text style={[styles.cardText, { color: colors.primary }]}>{item.name}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Header */}
       <View style={styles.headerRow}>
         <Ionicons
           name="menu"
           size={26}
-          color="#35DE4E"
+          color={colors.primary}
           onPress={() => navigation.openDrawer()}
         />
-        <Text style={styles.headerTitle}>{greeting}</Text>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>
+          {greeting}
+        </Text>
       </View>
 
       {/* Recently Played */}
-      <Text style={styles.sectionTitle}>Recently Played</Text>
+      <Text style={[styles.sectionTitle, { color: colors.primary }]}>
+        Recently Played
+      </Text>
       <FlatList
         data={dummyPlaylists}
         renderItem={renderCard}
@@ -60,7 +77,9 @@ export default function Homepage() {
       />
 
       {/* Made for You */}
-      <Text style={styles.sectionTitle}>Made for You</Text>
+      <Text style={[styles.sectionTitle, { color: colors.primary }]}>
+        Made for You
+      </Text>
       <FlatList
         data={dummyPlaylists}
         renderItem={renderCard}
@@ -74,16 +93,22 @@ export default function Homepage() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0B0C07", paddingTop: 60, paddingHorizontal: 20 },
-  headerRow: { flexDirection: "row", alignItems: "center", marginBottom: 20 },
+  container: {
+    flex: 1,
+    paddingTop: 60,
+    paddingHorizontal: 20,
+  },
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+  },
   headerTitle: {
-    color: "#35DE4E",
     fontSize: 22,
-    fontFamily: "DotGothic16_400Regular",
     marginLeft: 12,
+    fontFamily: "DotGothic16_400Regular",
   },
   sectionTitle: {
-    color: "#35DE4E",
     fontSize: 18,
     marginTop: 12,
     marginBottom: 6,
@@ -93,7 +118,6 @@ const styles = StyleSheet.create({
     marginRight: 14,
     width: 120,
     maxHeight: 120,
-    backgroundColor: "#070806",
     borderRadius: 6,
     padding: 10,
     alignItems: "center",
@@ -104,11 +128,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: "#35DE4E",
   },
   cardText: {
-    color: "#35DE4E",
     fontSize: 13,
     textAlign: "center",
+    fontFamily: "DotGothic16_400Regular",
   },
 });

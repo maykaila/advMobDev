@@ -78,3 +78,19 @@ NGL.... I have nothing in my brain rn, will update when I can.
 
 #### Overall Reflection for Week 4:
 I have no one to blame but me (and my phone deciding that it wont connect to the wifi, but overall the blame goes on me for not searching alternative ways to access my project). Being self-reliant is better than being reliant on AI... FREE ME FROM THE SHACKLES OF MY OWN INCOMPETENCE AND STUPIDITYYY !!KSFHAKJSHDFKJ (someone said im not stupid, but they never correct the incompetent part... so there is that #freeMeFromMyOwnIncompetence)
+
+## Week 5
+#### Activity 1 - Unfinished
+
+#### Documentation:
+##### Light Mode:
+<p align="center">
+  <img src="./assets/screenshots/settingLight.jpeg" width="200"/>
+  <img src="./assets/screenshots/profileLight.jpeg" width="200"/>
+</p>
+
+##### Custom Dark Mode (Accent color only):
+<p align="center">
+  <img src="./assets/screenshots/settingCustom.jpeg" width="200"/>
+  <img src="./assets/screenshots/profileCustom.jpeg" width="200"/>
+</p>

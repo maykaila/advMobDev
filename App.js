@@ -1,12 +1,21 @@
+// App.js
 import "react-native-gesture-handler";
 import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator, useDrawerProgress } from "@react-navigation/drawer";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
+// Redux
+import { Provider, useSelector } from "react-redux";
+import { store } from "./redux/store";
+
+// Theme
+import { themePalettes } from "./themeConfig";
+
+// Screens
 import LoginPage from "./components/loginPage";
 import TaskPage from "./components/homepage";
 import ProfilePage from "./components/profile";
@@ -15,8 +24,14 @@ import TaskFolders from "./components/playlist";
 import PlaylistDetail from "./components/playlistDets";
 import EditProfilePage from "./components/profileEdit";
 
-
 const Stack = createNativeStackNavigator(), Drawer = createDrawerNavigator();
+
+// 👇 global font override
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.style = [
+  Text.defaultProps.style,
+  { fontFamily: "DotGothic16_400Regular" },
+];
 
 function AnimatedScreen({ children }) {
   const progress = useDrawerProgress() ?? { value: 0 };
@@ -33,6 +48,11 @@ function AnimatedScreen({ children }) {
 }
 
 function HomeWithDrawer() {
+  // 👇 pull theme from redux
+  const themeMode = useSelector((state) => state.theme.mode);
+  const accentColor = useSelector((state) => state.theme.accentColor);
+  const colors = themePalettes(accentColor)[themeMode] || themePalettes(accentColor).light;
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -41,12 +61,16 @@ function HomeWithDrawer() {
         gestureEnabled: true,
         drawerType: "front",
         swipeEdgeWidth: 100,
-        drawerStyle: drawerStyles.drawer,
-        drawerLabelStyle: drawerStyles.drawerLabel,
-        drawerActiveBackgroundColor: drawerColors.activeTint,
-        drawerActiveTintColor: drawerColors.activeText,
-        drawerInactiveTintColor: drawerColors.inactiveText,
-        sceneContainerStyle: { backgroundColor: "#0B0C07" }, // dark bg to match theme
+        drawerStyle: { backgroundColor: colors.background, width: "60%" },
+        drawerLabelStyle: {
+          fontSize: 15,
+          fontFamily: "DotGothic16_400Regular",
+          lineHeight: 25,
+        },
+        drawerActiveBackgroundColor: colors.primary,
+        drawerActiveTintColor: colors.background,
+        drawerInactiveTintColor: colors.primary,
+        sceneContainerStyle: { backgroundColor: colors.background },
       }}
       initialRouteName="Dashboard"
     >
@@ -65,7 +89,6 @@ function HomeWithDrawer() {
             <TaskFolders />
           </AnimatedScreen>
         )}
-        options={{ animation: "slide_from_right", animationDuration: 300 }}
       />
       <Drawer.Screen
         name="Profile"
@@ -74,7 +97,6 @@ function HomeWithDrawer() {
             <ProfilePage />
           </AnimatedScreen>
         )}
-        options={{ animation: "slide_from_right", animationDuration: 300 }}
       />
       <Drawer.Screen
         name="Settings"
@@ -83,7 +105,6 @@ function HomeWithDrawer() {
             <SettingsPage />
           </AnimatedScreen>
         )}
-        options={{ animation: "slide_from_right", animationDuration: 300 }}
       />
       <Drawer.Screen
         name="Logout"
@@ -92,7 +113,14 @@ function HomeWithDrawer() {
             <LoginPage />
           </AnimatedScreen>
         )}
-        options={{ drawerLabelStyle: drawerStyles.logout }}
+        options={{
+          drawerLabelStyle: {
+            fontSize: 15,
+            fontFamily: "DotGothic16_400Regular",
+            color: "#FF5AB8",
+            lineHeight: 25,
+          },
+        }}
       />
     </Drawer.Navigator>
   );
@@ -100,56 +128,17 @@ function HomeWithDrawer() {
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer
-        onStateChange={(state) => {
-          try {
-            localStorage.setItem("lastRoute", state.routes[state.index].name);
-          } catch {}
-        }}
-        initialState={(() => {
-          try {
-            const lastRoute = localStorage.getItem("lastRoute");
-            if (lastRoute) return { routes: [{ name: lastRoute }] };
-          } catch {}
-          return { routes: [{ name: "Login" }] };
-        })()}
-      >
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            name="Login"
-            component={LoginPage}
-            options={{ animation: "fade", animationDuration: 200 }}
-          />
-          <Stack.Screen name="Home" component={HomeWithDrawer} />
-          <Stack.Screen name="PlaylistDetail" component={PlaylistDetail} />
-          <Stack.Screen name="EditProfilePage" component={EditProfilePage} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
+    <Provider store={store}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={LoginPage} />
+            <Stack.Screen name="Home" component={HomeWithDrawer} />
+            <Stack.Screen name="PlaylistDetail" component={PlaylistDetail} />
+            <Stack.Screen name="EditProfilePage" component={EditProfilePage} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </Provider>
   );
 }
-
-const drawerStyles = StyleSheet.create({
-  drawer: {
-    backgroundColor: "#0B0C07",
-    width: "60%",
-  },
-  drawerLabel: {
-    fontSize: 15,
-    fontFamily: "DotGothic16_400Regular",
-    lineHeight: 25,
-  },
-  logout: {
-    fontSize: 15,
-    fontFamily: "DotGothic16_400Regular",
-    color: "#FF5AB8",
-    lineHeight: 25,
-  },
-});
-
-const drawerColors = {
-  activeTint: "#35DE4E",
-  activeText: "#0B0C07",
-  inactiveText: "#35DE4E",
-};
