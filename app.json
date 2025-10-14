@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "practiceApp",
-    "slug": "practiceApp",
+    "slug": "practiceapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/nerdCat.png",
@@ -16,6 +16,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.helpmelord.practiceApp",
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/nerdCat.png",
@@ -42,6 +43,12 @@
           "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8d1c6327-67c3-460d-89f7-31cfe0c2c293"
+      }
+    },
+    "owner": "helpmelord"
   }
 }

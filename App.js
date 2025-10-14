@@ -23,6 +23,7 @@ import SettingsPage from "./components/settings";
 import TaskFolders from "./components/playlist";
 import PlaylistDetail from "./components/playlistDets";
 import EditProfilePage from "./components/profileEdit";
+import CameraPage from "./components/cameraFunction";
 
 const Stack = createNativeStackNavigator(), Drawer = createDrawerNavigator();
 
@@ -91,6 +92,14 @@ function HomeWithDrawer() {
         )}
       />
       <Drawer.Screen
+        name="Camera"
+        children={() => (
+          <AnimatedScreen>
+            <CameraPage />
+          </AnimatedScreen>
+        )}
+      />
+      <Drawer.Screen
         name="Profile"
         children={() => (
           <AnimatedScreen>
@@ -136,6 +145,7 @@ export default function App() {
             <Stack.Screen name="Home" component={HomeWithDrawer} />
             <Stack.Screen name="PlaylistDetail" component={PlaylistDetail} />
             <Stack.Screen name="EditProfilePage" component={EditProfilePage} />
+            <Stack.Screen name="CameraPage" component={CameraPage} />
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
