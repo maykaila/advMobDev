@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, Image, ScrollView, } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { themePalettes } from "../themeConfig";
@@ -116,15 +108,64 @@ export default function PlaylistDetail({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  backButton: { position: "absolute", top: 40, left: 20, zIndex: 10, borderRadius: 50, padding: 6 },
-  banner: { alignItems: "center", marginTop: 60, marginBottom: 30 },
-  bannerArt: { width: 140, height: 140, borderRadius: 12, marginBottom: 16, borderWidth: 1 },
-  bannerTitle: { fontSize: 28, fontFamily: "DotGothic16_400Regular", marginBottom: 6 },
-  bannerSubtitle: { opacity: 0.8, fontFamily: "DotGothic16_400Regular" },
-  sectionTitle: { fontSize: 20, fontFamily: "DotGothic16_400Regular", marginTop: 20, marginBottom: 10 },
-  songRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingVertical: 12, borderBottomWidth: 1 },
-  songInfo: { flexDirection: "row", alignItems: "center", flex: 1 },
-  songText: { fontSize: 16, fontFamily: "DotGothic16_400Regular" },
-  songArtist: { fontSize: 12, opacity: 0.7, fontFamily: "DotGothic16_400Regular" },
+  container: { 
+    flex: 1, 
+    padding: 20 
+  },
+  backButton: { 
+    position: "absolute", 
+    top: 40, 
+    left: 20, 
+    zIndex: 10, 
+    borderRadius: 50, 
+    padding: 6 
+  },
+  banner: { 
+    alignItems: "center", 
+    marginTop: 60, 
+    marginBottom: 30 
+  },
+  bannerArt: { 
+    width: 140, 
+    height: 140, 
+    borderRadius: 12, 
+    marginBottom: 16, 
+    borderWidth: 1 
+  },
+  bannerTitle: { 
+    fontSize: 28, 
+    fontFamily: "DotGothic16_400Regular", 
+    marginBottom: 6 
+  },
+  bannerSubtitle: { 
+    opacity: 0.8, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  sectionTitle: { 
+    fontSize: 20, 
+    fontFamily: "DotGothic16_400Regular", 
+    marginTop: 20, 
+    marginBottom: 10 
+  },
+  songRow: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    justifyContent: "space-between", 
+    paddingVertical: 12, 
+    borderBottomWidth: 1 
+  },
+  songInfo: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    flex: 1 
+  },
+  songText: { 
+    fontSize: 16, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  songArtist: { 
+    fontSize: 12, 
+    opacity: 0.7, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
 });

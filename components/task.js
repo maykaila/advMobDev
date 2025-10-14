@@ -1,3 +1,4 @@
+// Ga suha duha ko kung i remove ba ni nako or di
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Checkbox from 'expo-checkbox';

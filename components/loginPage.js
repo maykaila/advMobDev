@@ -29,7 +29,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     if (email === "kaila@kai.kai" && password === "1234") {
-      navigation.navigate("Home"); // 👈 go to Home screen
+      navigation.navigate("Home"); //go to Home screen
     } else {
       alert("Invalid credentials");
     }

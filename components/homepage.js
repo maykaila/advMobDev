@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { themePalettes } from "../themeConfig"; // 👈 import centralized theme
+import { themePalettes } from "../themeConfig"; //import centralized theme
 
 export default function Homepage() {
   const navigation = useNavigation();
 
-  // 👇 Redux theme state
+  //Redux theme state
   const themeMode = useSelector((state) => state.theme.mode);
   const accentColor = useSelector((state) => state.theme.accentColor);
 
-  // 👇 Get colors from centralized theme
+  //Get colors from centralized theme
   const colors = themePalettes(accentColor)[themeMode] || themePalettes(accentColor).light;
 
   const [greeting, setGreeting] = useState("Good Evening");

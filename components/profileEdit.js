@@ -147,16 +147,71 @@ export default function EditProfilePage() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  backButton: { fontSize: 20, fontFamily: "DotGothic16_400Regular", lineHeight: 30, marginBottom: 10 },
-  title: { fontSize: 20, fontFamily: "DotGothic16_400Regular", lineHeight: 30, marginLeft: 10 },
-  settingView: { marginTop: 50, paddingTop: 5, paddingHorizontal: 10, flexDirection: "row", alignItems: "flex-start" },
-  inputWrapper: { marginVertical: 10 },
-  input: { borderWidth: 1, borderRadius: 5, padding: 10, fontFamily: "DotGothic16_400Regular" },
-  error: { marginTop: 5, fontSize: 12, fontFamily: "DotGothic16_400Regular" },
-  submitButton: { borderWidth: 1, borderRadius: 5, paddingVertical: 12, alignItems: "center", marginVertical: 20 },
-  submitText: { fontSize: 15, fontFamily: "DotGothic16_400Regular" },
-  previewCard: { borderWidth: 1, borderRadius: 5, padding: 20, alignItems: "center", marginTop: 20 },
-  previewAvatar: { width: 100, height: 100, borderRadius: 5, borderWidth: 2, marginBottom: 15 },
-  previewText: { fontSize: 15, fontFamily: "DotGothic16_400Regular", marginBottom: 5 },
+  container: { 
+    flex: 1, 
+    padding: 20 
+  },
+  backButton: { 
+    fontSize: 20, 
+    fontFamily: "DotGothic16_400Regular", 
+    lineHeight: 30, 
+    marginBottom: 10 
+  },
+  title: { 
+    fontSize: 20, 
+    fontFamily: "DotGothic16_400Regular", 
+    lineHeight: 30, 
+    marginLeft: 10 
+  },
+  settingView: { 
+    marginTop: 50, 
+    paddingTop: 5, 
+    paddingHorizontal: 10, 
+    flexDirection: "row", 
+    alignItems: "flex-start" 
+  },
+  inputWrapper: { 
+    marginVertical: 10 
+  },
+  input: { 
+    borderWidth: 1, 
+    borderRadius: 5, 
+    padding: 10, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  error: { 
+    marginTop: 5, 
+    fontSize: 12, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  submitButton: { 
+    borderWidth: 1, 
+    borderRadius: 5, 
+    paddingVertical: 12, 
+    alignItems: "center", 
+    marginVertical: 20 
+  },
+  submitText: { 
+    fontSize: 15, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  previewCard: { 
+    borderWidth: 1, 
+    borderRadius: 5, 
+    padding: 20, 
+    alignItems: "center", 
+    marginTop: 20 
+  },
+  previewAvatar: { 
+    width: 100, 
+    height: 100, 
+    borderRadius: 5, 
+    borderWidth: 2, 
+    marginBottom: 15 
+  },
+  previewText: { 
+    fontSize: 15, 
+    fontFamily: "DotGothic16_400Regular", 
+    marginBottom: 5 
+  },
 });

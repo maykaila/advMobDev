@@ -26,7 +26,7 @@ import EditProfilePage from "./components/profileEdit";
 
 const Stack = createNativeStackNavigator(), Drawer = createDrawerNavigator();
 
-// 👇 global font override
+//global font override
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.style = [
   Text.defaultProps.style,
@@ -48,7 +48,7 @@ function AnimatedScreen({ children }) {
 }
 
 function HomeWithDrawer() {
-  // 👇 pull theme from redux
+  //pull theme from redux
   const themeMode = useSelector((state) => state.theme.mode);
   const accentColor = useSelector((state) => state.theme.accentColor);
   const colors = themePalettes(accentColor)[themeMode] || themePalettes(accentColor).light;

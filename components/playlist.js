@@ -1,15 +1,6 @@
 // components/playlist.js
 import React, { useReducer, useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Keyboard,
-  Image,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Keyboard, Image, } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import Animated, { Layout, FadeIn, FadeOut } from "react-native-reanimated";
@@ -243,14 +234,51 @@ const styles = StyleSheet.create({
     marginRight: 8,
     fontFamily: "DotGothic16_400Regular",
   },
-  addBtn: { paddingVertical: 10, paddingHorizontal: 12, borderRadius: 4 },
-  addBtnText: { fontWeight: "700", fontFamily: "DotGothic16_400Regular" },
-  historyRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 16 },
-  historyBtn: { paddingVertical: 8, paddingHorizontal: 16, borderRadius: 4 },
-  historyText: { fontWeight: "700", fontFamily: "DotGothic16_400Regular" },
-  disabled: { opacity: 0.5 },
-  playlistRow: { flexDirection: "row", alignItems: "center", padding: 12, borderRadius: 6, marginBottom: 10 },
-  playlistArt: { width: 56, height: 56, borderRadius: 4, borderWidth: 1 },
-  playlistTitle: { fontSize: 16, fontFamily: "DotGothic16_400Regular" },
-  playlistSub: { fontSize: 12, fontFamily: "DotGothic16_400Regular" },
+  addBtn: { 
+    paddingVertical: 10, 
+    paddingHorizontal: 12, 
+    borderRadius: 4 
+  },
+  addBtnText: { 
+    fontWeight: "700", 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  historyRow: { 
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    marginBottom: 16 
+  },
+  historyBtn: { 
+    paddingVertical: 8, 
+    paddingHorizontal: 16, 
+    borderRadius: 4 
+  },
+  historyText: { 
+    fontWeight: "700", 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  disabled: { 
+    opacity: 0.5 
+  },
+  playlistRow: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    padding: 12, 
+    borderRadius: 6, 
+    marginBottom: 10 
+  },
+  playlistArt: { 
+    width: 56, 
+    height: 56, 
+    borderRadius: 4, 
+    borderWidth: 1 
+  },
+  playlistTitle: { 
+    fontSize: 16, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
+  playlistSub: { 
+    fontSize: 12, 
+    fontFamily: "DotGothic16_400Regular" 
+  },
 });
