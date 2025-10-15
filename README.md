@@ -80,7 +80,7 @@ NGL.... I have nothing in my brain rn, will update when I can.
 I have no one to blame but me (and my phone deciding that it wont connect to the wifi, but overall the blame goes on me for not searching alternative ways to access my project). Being self-reliant is better than being reliant on AI... FREE ME FROM THE SHACKLES OF MY OWN INCOMPETENCE AND STUPIDITYYY !!KSFHAKJSHDFKJ (someone said im not stupid, but they never correct the incompetent part... so there is that #freeMeFromMyOwnIncompetence)
 
 ## Week 5
-#### Activity 1 - Unfinished
+#### Activity 1 - Unfinished (I forgot what lacking here...)
 
 #### Documentation:
 ##### Light Mode:
@@ -93,4 +93,13 @@ I have no one to blame but me (and my phone deciding that it wont connect to the
 <p align="center">
   <img src="./assets/screenshots/settingCustom.jpeg" width="200"/>
   <img src="./assets/screenshots/profileCustom.jpeg" width="200"/>
+</p>
+
+#### Activity 2: Camera
+
+#### Documentation:
+<p align="center">
+  <img src="./assets/screenshots/cameraMode.jpeg" width="200"/>
+  <img src="./assets/screenshots/cameraPreview.jpeg" width="200"/>
+  <img src="./assets/screenshots/savedPhotos.jpeg" width="200"/>
 </p>
